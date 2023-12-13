@@ -1,5 +1,5 @@
-import { Route, Routes as Switch } from 'react-router-dom';
-import { Home } from 'pages';
+import { Navigate, Route, Routes as Switch } from 'react-router-dom';
+import { Home, SingleCountry } from 'pages';
 
 const Routes = () => {
 	const i = 0;
@@ -7,8 +7,9 @@ const Routes = () => {
 	return (
 		<Switch>
 			<Route path="" element={<Home />} />
+			<Route path="language/:language" element={<SingleCountry />} />
 
-			<Route path="*" element={<Home />} />
+			<Route path="*" element={<Navigate to="/" />} />
 		</Switch>
 	);
 };
