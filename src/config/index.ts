@@ -15,7 +15,7 @@ const config = {
 			{
 				title: 'Wallet',
 				right: 'Hamyon',
-				varinats: ['Wallet', 'Soyabon', 'Planshet', 'Ruchka']
+				varinats: ['Hamyon', 'Soyabon', 'Planshet', 'Ruchka']
 			},
 
 			{
