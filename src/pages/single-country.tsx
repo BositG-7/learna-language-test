@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Box, Button, Container, Modal, Typography } from '@mui/material';
+import config from 'config';
 
 interface SingleCountryProps {}
 
@@ -11,6 +12,22 @@ const SingleCountry = () => {
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 	const navigete = useNavigate();
+
+	const [data, setData] = useState([]);
+	const [dataIdx, setDataIdx] = useState(0);
+
+	useEffect(() => {
+		const quetions: any = config.data.quetions[dataIdx];
+
+		setData(quetions);
+	}, [dataIdx]);
+
+	const handleClick = (value: string) => {
+		// @ts-expect-error
+		console.log(value === data.right);
+
+		setDataIdx(dataIdx + 1);
+	};
 
 	const style = {
 		position: 'absolute' as 'absolute',
@@ -117,7 +134,7 @@ const SingleCountry = () => {
 					</Box>
 					<Box
 						sx={{ border: '1px solid black', padding: '12px', borderRadius: '8px', fontWeight: '500px', fontSize: '16px', lineHeight: '24px' }}>
-						1/10
+						{`${dataIdx + 1}/10`}
 					</Box>
 				</Box>
 				<Box mt={10} sx={{ fontSize: '18px', lineHeight: '20px', fontWeight: '700px', color: '#404446' }} color="#404446">
@@ -126,73 +143,39 @@ const SingleCountry = () => {
 				<Box mt={5} sx={{ border: '1px solid #e3e5e6', borderRadius: '8px', display: 'flex', justifyContent: 'center' }}>
 					<img src="https://web-student.inter-nation.uz/images/word.png" alt="" />
 				</Box>
-				<h2 style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '1.5em' }}>Wallet</h2>
+				<h2 style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '1.5em' }}>
+					{
+						// @ts-ignore
+						data.title
+					}
+				</h2>
 
 				<Box pt={5} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', width: '100%' }}>
-					<Button
-						sx={{
-							width: '25%',
-							padding: '24px',
-							borderRadius: '12px',
-							border: '2px solid transparent',
-							fontSize: '16px',
-							fontWeight: '500px',
-							lineHeight: '16px',
-							boxShadow: '0px 2px 6px 0px rgba(0,0,0,.16)',
-							background: '#fff',
-							userSelect: 'none',
-							color: '#090a0a'
-						}}>
-						Planshet
-					</Button>
-					<Button
-						sx={{
-							width: '25%',
-							padding: '24px',
-							borderRadius: '12px',
-							border: '2px solid transparent',
-							fontSize: '16px',
-							fontWeight: '500px',
-							lineHeight: '16px',
-							boxShadow: '0px 2px 6px 0px rgba(0,0,0,.16)',
-							background: '#fff',
-							userSelect: 'none',
-							color: '#090a0a'
-						}}>
-						Soyabon
-					</Button>
-					<Button
-						sx={{
-							width: '25%',
-							padding: '24px',
-							borderRadius: '12px',
-							border: '2px solid transparent',
-							fontSize: '16px',
-							fontWeight: '500px',
-							lineHeight: '16px',
-							boxShadow: '0px 2px 6px 0px rgba(0,0,0,.16)',
-							background: '#fff',
-							userSelect: 'none',
-							color: '#090a0a'
-						}}>
-						Ruchka
-					</Button>
-					<Button
-						sx={{
-							width: '25%',
-							padding: '24px',
-							borderRadius: '12px',
-							border: '2px solid transparent',
-							fontSize: '16px',
-							fontWeight: '500px',
-							lineHeight: '16px',
-							boxShadow: '0px 2px 6px 0px rgba(0,0,0,.16)',
-							background: '#fff',
-							userSelect: 'none',
-							color: '#090a0a'
-						}}>
-						Hamyon
-					</Button>
+					{
+						// @ts-expect-error
+						data?.varinats?.map((item, idx) => (
+							// eslint-disable-next-line react/jsx-key
+							<Button
+								onClick={() => {
+									handleClick(item);
+								}}
+								sx={{
+									width: '25%',
+									padding: '24px',
+									borderRadius: '12px',
+									border: '2px solid transparent',
+									fontSize: '16px',
+									fontWeight: '500px',
+									lineHeight: '16px',
+									boxShadow: '0px 2px 6px 0px rgba(0,0,0,.16)',
+									background: '#fff',
+									userSelect: 'none',
+									color: '#090a0a'
+								}}>
+								{item}
+							</Button>
+						))
+					}
 				</Box>
 			</Container>
 		</>
