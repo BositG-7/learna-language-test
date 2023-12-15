@@ -1,4 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
+// eslint-disable-next-line import/order
+import { Containers } from 'modules/auth';
 import ReactDOM from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from 'react-query';
 // eslint-disable-next-line import/order
@@ -17,9 +19,9 @@ root.render(
 	<BrowserRouter>
 		<QueryParamProvider adapter={ReactRouter6Adapter}>
 			<QueryClientProvider client={client}>
-				<>
+				<Containers.Auth>
 					<Routes />
-				</>
+				</Containers.Auth>
 			</QueryClientProvider>
 		</QueryParamProvider>
 	</BrowserRouter>

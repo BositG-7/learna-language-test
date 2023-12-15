@@ -4,6 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Box, Button, Container, Modal, Typography } from '@mui/material';
 import config from 'config';
 
+import { Rating } from 'components';
+
 interface SingleCountryProps {}
 
 const SingleCountry = () => {
@@ -18,6 +20,9 @@ const SingleCountry = () => {
 	const [dataIdx, setDataIdx] = useState(0);
 	const [disabled, setDisabled] = useState(false);
 	const [checkwinner, setCheckWinner] = useState('');
+	const [winnerRating, setWinnerRating] = useState(0);
+	const [noWinnerRating, setNoWinnerRating] = useState(0);
+	const [isWinner, setisWinner] = useState(false);
 
 	useEffect(() => {
 		const quetions: any = config.data.quetions[dataIdx];
@@ -30,14 +35,20 @@ const SingleCountry = () => {
 		if (value === data.right) {
 			setCheckWinner('togri');
 			setDisabled(true);
+			setWinnerRating(winnerRating + 1);
 		} else {
 			setCheckWinner('notogri');
 			setDisabled(true);
+			setNoWinnerRating(noWinnerRating + 1);
 		}
 	};
 	const handleNext = () => {
 		setDisabled(false);
 		setCheckWinner('');
+		if (winnerRating + noWinnerRating === 10) {
+			setisWinner(true);
+			return;
+		}
 		setDataIdx(dataIdx + 1);
 	};
 
@@ -52,6 +63,14 @@ const SingleCountry = () => {
 		padding: '24px',
 		borderRadius: '24px'
 	};
+
+	if (isWinner) {
+		return (
+			<>
+				<Rating rating={winnerRating} />
+			</>
+		);
+	}
 
 	return (
 		<>
