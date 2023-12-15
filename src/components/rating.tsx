@@ -1,14 +1,16 @@
 import { FunctionComponent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Box, Button, Container } from '@mui/material';
 
 import { Confetti } from 'components';
 
 interface RatingProps {
 	rating: number;
+	onReset: () => void;
 }
 
-const Rating: FunctionComponent<RatingProps> = ({ rating }) => {
-	const i = 0;
+const Rating: FunctionComponent<RatingProps> = ({ rating, onReset }) => {
+	const navigete = useNavigate();
 
 	return (
 		<>
@@ -101,9 +103,7 @@ const Rating: FunctionComponent<RatingProps> = ({ rating }) => {
 						Back to Main
 					</Button>
 					<Button
-						onClick={() => {
-							window.location.reload();
-						}}
+						onClick={onReset}
 						sx={{
 							fontSize: '14px', // Font size should be specified as a string
 							height: '68px', // Height should be specified as a string

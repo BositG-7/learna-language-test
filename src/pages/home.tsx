@@ -42,7 +42,8 @@ const Home = () => {
 						display: 'flex',
 						justifyContent: 'center',
 						alignItems: 'center',
-						flexDirection: 'column'
+						flexDirection: 'column',
+						cursor: 'pointer'
 					}}
 					width="50%">
 					<h2
@@ -59,6 +60,9 @@ const Home = () => {
 				</Box>
 
 				<Box
+					onClick={() => {
+						navigete('/dashboard/translator');
+					}}
 					sx={{
 						marginBottom: '20px',
 						marginTop: '20px',
@@ -71,11 +75,12 @@ const Home = () => {
 						display: 'flex',
 						justifyContent: 'center',
 						alignItems: 'center',
-						flexDirection: 'column'
+						flexDirection: 'column',
+						cursor: 'pointer'
 					}}
 					width="50%">
-					<Box>
-						<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<Box display="flex" justifyContent="center" alignItems="center">
+						<svg width="100" height="100" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path
 								d="M2.86218 5H9.86218M16.8622 5H14.3622M9.86218 5H14.3622M9.86218 5V3M14.3622 5C13.5417 7.73513 11.8234 10.3206 9.86218 12.5929M4.86218 17.5C6.44759 16.1411 8.23818 14.4744 9.86218 12.5929M9.86218 12.5929C8.86218 11.5 7.26218 9.3 6.86218 8.5M9.86218 12.5929L12.8622 15.5"
 								stroke="#090A0A"
@@ -91,7 +96,9 @@ const Home = () => {
 								strokeLinejoin="round"
 							/>
 						</svg>
-						Open translator
+						<Box fontSize="3em" fontWeight="bold" color="#000000">
+							Open translator
+						</Box>
 					</Box>
 				</Box>
 			</Container>

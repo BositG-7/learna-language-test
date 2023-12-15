@@ -30,6 +30,15 @@ const SingleCountry = () => {
 		setData(quetions);
 	}, [dataIdx]);
 
+	const handleReset = () => {
+		setDataIdx(0);
+		setDisabled(false);
+		setCheckWinner('');
+		setWinnerRating(0);
+		setNoWinnerRating(0);
+		setisWinner(false);
+	};
+
 	const handleClick = (value: string) => {
 		// @ts-expect-error
 		if (value === data.right) {
@@ -67,7 +76,7 @@ const SingleCountry = () => {
 	if (isWinner) {
 		return (
 			<>
-				<Rating rating={winnerRating} />
+				<Rating rating={winnerRating} onReset={handleReset} />
 			</>
 		);
 	}

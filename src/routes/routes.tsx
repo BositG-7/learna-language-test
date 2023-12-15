@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes as Switch } from 'react-router-dom';
 import { useAuth } from 'modules/auth/context';
-import { Auth, Home, SingleCountry } from 'pages';
+import { Auth, Home, SingleCountry, Translator } from 'pages';
 
 import AuthProtected from './auth-protected';
 import UserRoute from './user-route';
@@ -22,8 +22,9 @@ const Routes = () => {
 				<Route path="*" index element={<Navigate to="/auth/login" />} />
 			</Route>
 			<Route path="dashboard" element={<UserRoute allowed={!!user?.email} redirectURL="/" />}>
-				<Route path="" element={<Home />} />
 				<Route path="vocabulary" element={<SingleCountry />} />
+				<Route path="translator" element={<Translator />} />
+				<Route path="" index element={<Home />} />
 
 				<Route path="*" index element={<Navigate to="/dashboard" />} />
 			</Route>
