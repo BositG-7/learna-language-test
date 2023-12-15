@@ -1,14 +1,27 @@
 import { FunctionComponent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
+import axios from 'axios';
 
 interface TranslatorProps {}
 
 const Translator: FunctionComponent<TranslatorProps> = () => {
 	const navigete = useNavigate();
 
-	const [country1, setCountry1] = useState('Uzbek');
-	const [country2, setCountry2] = useState('English');
+	const [country1, setCountry1] = useState('English');
+	const [country2, setCountry2] = useState('Uzbek');
+	const [translate, setTranslator] = useState('');
+
+	const handleChange = async (value: string) => {
+		try {
+			const { data }: any = await axios.get(`https://api.mymemory.translated.net/get?
+            q=${value}&langpair=${country1 === 'English' ? 'en-US' : 'uz-UZ'}|${country2 === 'English' ? 'en-US' : 'uz-UZ'}`);
+
+			setTranslator(data.matches[0].translation);
+		} catch (error: any) {
+			console.log(error);
+		}
+	};
 
 	return (
 		<>
@@ -101,28 +114,16 @@ const Translator: FunctionComponent<TranslatorProps> = () => {
 					</Button>
 				</Box>
 				<Box display="flex" justifyContent="center" alignItems="center" width="100%">
-					<TextField style={{ width: '50%', borderRadius: '12px' }} placeholder="Enter word" multiline rows={2} maxRows={4} />
-					<TextField style={{ width: '50%' }} multiline rows={2} maxRows={4} />
-				</Box>
-				<Box display="flex" justifyContent="center" alignItems="center">
-					<Button
-						sx={{
-							width: '120px',
-							height: '48px',
-							display: 'flex',
-							justifyContent: 'center',
-							alignItems: 'center',
-							ml: '250px',
-							mt: '5px',
-							cursor: 'pointer',
-							borderRadius: '12px',
-							fontWeight: '500',
-							transform: 'translateX(calc(-100% - 12px))',
-							backgroundColor: '#ffc700',
-							color: '#fff'
-						}}>
-						Translate
-					</Button>
+					<TextField
+						onChange={e => {
+							handleChange(e.target.value);
+						}}
+						style={{ width: '50%', borderRadius: '12px' }}
+						placeholder="Enter word"
+						multiline
+						rows={2}
+					/>
+					<TextField value={translate} style={{ width: '50%' }} multiline rows={2} />
 				</Box>
 			</Container>
 		</>
