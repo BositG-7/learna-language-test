@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import { Box, Button, Container, Modal, Typography } from '@mui/material';
 import config from 'config';
 
@@ -9,14 +9,18 @@ import { Rating } from 'components';
 interface SingleCountryProps {}
 
 const SingleCountry = () => {
-	const { language } = useParams();
+
 
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 	const navigete = useNavigate();
 
-	const [data, setData] = useState([]);
+	const [data, setData] = useState<{ title: string; right: string; varinats: string[] }>({
+		title: '',
+		right: '',
+		varinats: ['', '']
+	});
 	const [dataIdx, setDataIdx] = useState(0);
 	const [disabled, setDisabled] = useState(false);
 	const [checkwinner, setCheckWinner] = useState('');
@@ -25,7 +29,7 @@ const SingleCountry = () => {
 	const [isWinner, setisWinner] = useState(false);
 
 	useEffect(() => {
-		const quetions: any = config.data.quetions[dataIdx];
+		const quetions = config.data.quetions[dataIdx];
 
 		setData(quetions);
 	}, [dataIdx]);
@@ -40,7 +44,6 @@ const SingleCountry = () => {
 	};
 
 	const handleClick = (value: string) => {
-		// @ts-expect-error
 		if (value === data.right) {
 			setCheckWinner('togri');
 			setDisabled(true);
@@ -191,32 +194,29 @@ const SingleCountry = () => {
 				</h2>
 
 				<Box pt={5} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', width: '100%' }}>
-					{
-						// @ts-expect-error
-						data?.varinats?.map((item, idx) => (
-							// eslint-disable-next-line react/jsx-key
-							<Button
-								onClick={() => {
-									handleClick(item);
-								}}
-								disabled={disabled}
-								sx={{
-									width: '25%',
-									padding: '24px',
-									borderRadius: '12px',
-									border: '2px solid transparent',
-									fontSize: '16px',
-									fontWeight: '500px',
-									lineHeight: '16px',
-									boxShadow: '0px 2px 6px 0px rgba(0,0,0,.16)',
-									background: '#fff',
-									userSelect: 'none',
-									color: '#090a0a'
-								}}>
-								{item}
-							</Button>
-						))
-					}
+					{data?.varinats?.map((item, idx) => (
+						// eslint-disable-next-line react/jsx-key
+						<Button
+							onClick={() => {
+								handleClick(item);
+							}}
+							disabled={disabled}
+							sx={{
+								width: '25%',
+								padding: '24px',
+								borderRadius: '12px',
+								border: '2px solid transparent',
+								fontSize: '16px',
+								fontWeight: '500px',
+								lineHeight: '16px',
+								boxShadow: '0px 2px 6px 0px rgba(0,0,0,.16)',
+								background: '#fff',
+								userSelect: 'none',
+								color: '#090a0a'
+							}}>
+							{item}
+						</Button>
+					))}
 				</Box>
 				{checkwinner === 'togri' ? (
 					<Box
@@ -366,11 +366,7 @@ const SingleCountry = () => {
 											'line-height': '20px',
 											color: '#ff5247'
 										}}>
-										Correct:{' '}
-										{
-											// @ts-expect-error
-											data.right
-										}
+										Correct: {data.right}
 									</Typography>
 								</Box>
 							</Box>

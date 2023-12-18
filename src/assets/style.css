@@ -13,3 +13,10 @@ body {
 	font: 400 14px/20px Roboto, Helvetica Neue, sans-serif;
 	letter-spacing: normal;
 }
+
+@media (min-width: 600px) {
+	.css-txnpx0-MuiContainer-root {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+}

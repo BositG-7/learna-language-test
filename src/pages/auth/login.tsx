@@ -12,8 +12,6 @@ const SignIn = () => {
 		e.preventDefault();
 		signInWithEmailAndPassword(auth, email, password)
 			.then(userCredential => {
-				console.log(userCredential);
-
 				setSession(userCredential.user);
 
 				window.location.href = '/';
@@ -29,7 +27,7 @@ const SignIn = () => {
 				sx={{
 					width: '95%',
 					background: 'white',
-					height: '100vh',
+					height: '95vh',
 					marginBottom: '20px',
 					marginTop: '20px',
 					padding: '24px',

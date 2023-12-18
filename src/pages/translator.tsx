@@ -85,6 +85,7 @@ const Translator: FunctionComponent<TranslatorProps> = () => {
 						onClick={() => {
 							setCountry1(country1 === 'English' ? 'Uzbek' : 'English');
 							setCountry2(country2 === 'Uzbek' ? 'English' : 'Uzbek');
+							handleChange(translate);
 						}}
 						width="25"
 						height="24"
