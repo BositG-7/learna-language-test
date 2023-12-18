@@ -25,7 +25,8 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 					<Grid
 						sx={{
 							backgroundImage: 'url(https://www.learnalanguage.com/storage/app/uploads/public/5cf/62a/501/5cf62a5011e94517528621.png)',
-							backgroundSize: 'cover'
+							backgroundSize: 'cover',
+							cursor: 'pointer'
 						}}
 						ml={4}
 						bgcolor="yellow"
@@ -59,7 +60,8 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 					<Grid
 						sx={{
 							backgroundImage: 'url(https://www.learnalanguage.com/storage/app/uploads/public/5d1/f41/04d/5d1f4104de9c1711200253.jpg)',
-							backgroundSize: 'cover'
+							backgroundSize: 'cover',
+							cursor: 'pointer'
 						}}
 						ml={4}
 						bgcolor="yellow"
@@ -92,7 +94,8 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 					<Grid
 						sx={{
 							backgroundImage: 'url(https://www.learnalanguage.com/storage/app/uploads/public/5d1/f40/f06/5d1f40f06cbb0940749737.jpg)',
-							backgroundSize: 'cover'
+							backgroundSize: 'cover',
+							cursor: 'pointer'
 						}}
 						ml={4}
 						bgcolor="yellow"
@@ -125,7 +128,8 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 					<Grid
 						sx={{
 							backgroundImage: 'url(https://www.learnalanguage.com/storage/app/uploads/public/5d1/f40/dc5/5d1f40dc5bac4672570075.jpg)',
-							backgroundSize: 'cover'
+							backgroundSize: 'cover',
+							cursor: 'pointer'
 						}}
 						ml={4}
 						bgcolor="yellow"
@@ -158,7 +162,8 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 					<Grid
 						sx={{
 							backgroundImage: 'url(https://www.learnalanguage.com/storage/app/uploads/public/5d1/f40/c40/5d1f40c40207c034000128.jpg)',
-							backgroundSize: 'cover'
+							backgroundSize: 'cover',
+							cursor: 'pointer'
 						}}
 						ml={4}
 						bgcolor="yellow"
@@ -191,7 +196,8 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 					<Grid
 						sx={{
 							backgroundImage: 'url(https://www.learnalanguage.com/storage/app/uploads/public/5d1/f3b/d60/5d1f3bd60aebf015141870.jpg)',
-							backgroundSize: 'cover'
+							backgroundSize: 'cover',
+							cursor: 'pointer'
 						}}
 						ml={4}
 						bgcolor="yellow"

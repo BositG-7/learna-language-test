@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { Box, Button, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { RiSearchLine } from 'react-icons/ri';
 
-interface HeaderProps {}
+interface NavbarProps {}
 
-const Header: FunctionComponent<HeaderProps> = () => {
+const Navbar: FunctionComponent<NavbarProps> = () => {
 	const [search, setSearch] = useState(false);
-
 	const navigete = useNavigate();
+
 	const iconStyle = {
 		height: '25px',
 		width: '25px',
@@ -32,7 +32,8 @@ const Header: FunctionComponent<HeaderProps> = () => {
 						width: '100%',
 						alignItems: 'center',
 						height: '100px',
-						padding: '24px'
+						padding: '24px',
+						bgcolor: '#173857'
 					}}>
 					<Box
 						onClick={() => {
@@ -54,7 +55,7 @@ const Header: FunctionComponent<HeaderProps> = () => {
 							onClick={() => {
 								navigete('/dashboard/contact');
 							}}>
-							Contact Us
+							Contast Us
 						</li>
 						<li>
 							<FormControl sx={{ width: '100px' }}>
@@ -86,7 +87,8 @@ const Header: FunctionComponent<HeaderProps> = () => {
 						width: '100%',
 						alignItems: 'center',
 						height: '100px',
-						padding: '24px'
+						padding: '24px',
+						bgcolor: '#173857'
 					}}>
 					<Box display="flex" justifyContent="center" alignItems="center" gap={1}>
 						<input
@@ -117,4 +119,4 @@ const Header: FunctionComponent<HeaderProps> = () => {
 	);
 };
 
-export default Header;
+export default Navbar;

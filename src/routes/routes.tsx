@@ -1,13 +1,15 @@
 import { Navigate, Route, Routes as Switch } from 'react-router-dom';
-import { useAuth } from 'modules/auth/context';
 import { Auth, SingleCountry, Translator } from 'pages';
+import About from 'pages/about';
+import Contact from 'pages/contact';
 import Home from 'pages/home';
+import { getSession } from 'services/store';
 
 import AuthProtected from './auth-protected';
 import UserRoute from './user-route';
 
 const Routes = () => {
-	const { user } = useAuth();
+	const user = getSession();
 
 	return (
 		<Switch>
@@ -20,11 +22,13 @@ const Routes = () => {
 				<Route path="*" index element={<Navigate to="/auth/login" />} />
 			</Route>
 			<Route path="dashboard" element={<UserRoute allowed={!!user?.email} redirectURL="/" />}>
+				<Route path="home" element={<Home />} />
 				<Route path="vocabulary" element={<SingleCountry />} />
 				<Route path="translator" element={<Translator />} />
-				<Route path="" index element={<Home />} />
+				<Route path="about" element={<About />} />
+				<Route path="contact" element={<Contact />} />
 
-				<Route path="*" index element={<Navigate to="/dashboard" />} />
+				<Route path="*" index element={<Navigate to="/dashboard/home" />} />
 			</Route>
 
 			<Route path="*" element={<Navigate to="/" />} />

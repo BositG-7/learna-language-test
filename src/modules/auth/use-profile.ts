@@ -9,20 +9,16 @@ interface State {
 }
 
 const useProfile = (): [State, Dispatch<SetStateAction<State>>] => {
-	const { accessToken } = getSession();
+	const user = getSession();
 
-	const [state, setState] = React.useState<State>({ isLoading: !!accessToken, user: null });
+	const [state, setState] = React.useState<State>({ isLoading: !!user, user: null });
 
 	useEffect(() => {
 		const request = async () => {
-			const user = getSession();
-
-			console.log(user);
-
 			setState({ user, isLoading: false });
 		};
 
-		request();
+		if (user) request();
 	}, []);
 
 	return [state, setState];

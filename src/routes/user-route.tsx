@@ -8,6 +8,8 @@ interface UserRouteProps {
 const UserRoute = ({ allowed = false, redirectURL = '/' }: UserRouteProps) => {
 	const navigete = useNavigate();
 
+	console.log(allowed);
+
 	if (allowed)
 		return (
 			<>
@@ -15,7 +17,7 @@ const UserRoute = ({ allowed = false, redirectURL = '/' }: UserRouteProps) => {
 			</>
 		);
 
-	return <Navigate to="/" />;
+	return <Navigate to={redirectURL} />;
 };
 
 export default UserRoute;

@@ -14,29 +14,29 @@ const AllLearn: FunctionComponent<AllLearnProps> = ({ onButton }) => {
 				<Typography variant="h2">I want to learn...</Typography>
 
 				<Box display="flex" mt={5} justifyContent="center" alignItems="center" gap="20px">
-					<Box display="flex" justifyContent="center" alignItems="center" gap={1}>
+					<Box sx={{ cursor: 'pointer' }} display="flex" justifyContent="center" alignItems="center" gap={1}>
 						<img src="https://www.learnalanguage.com/themes/demo/assets/images/flags/English.svg" alt="" />
 						<Typography>English</Typography>
 					</Box>
-					<Box display="flex" justifyContent="center" alignItems="center" gap={1}>
+					<Box sx={{ cursor: 'pointer' }} display="flex" justifyContent="center" alignItems="center" gap={1}>
 						<img src="https://www.learnalanguage.com/themes/demo/assets/images/flags/German.svg" alt="" />
 						<Typography>German</Typography>
 					</Box>
-					<Box display="flex" justifyContent="center" alignItems="center" gap={1}>
+					<Box sx={{ cursor: 'pointer' }} display="flex" justifyContent="center" alignItems="center" gap={1}>
 						<img src="https://www.learnalanguage.com/themes/demo/assets/images/flags/French.svg" alt="" />
 						<Typography>French</Typography>
 					</Box>
 				</Box>
 				<Box mt={1} display="flex" justifyContent="center" alignItems="center" gap="20px">
-					<Box display="flex" justifyContent="center" alignItems="center" gap={1}>
+					<Box sx={{ cursor: 'pointer' }} display="flex" justifyContent="center" alignItems="center" gap={1}>
 						<img src="https://www.learnalanguage.com/themes/demo/assets/images/flags/Spanish.svg" alt="" />
 						<Typography>Spanish</Typography>
 					</Box>
-					<Box display="flex" justifyContent="center" alignItems="center" gap={1}>
+					<Box sx={{ cursor: 'pointer' }} display="flex" justifyContent="center" alignItems="center" gap={1}>
 						<img src="https://www.learnalanguage.com/themes/demo/assets/images/flags/Italian.svg" alt="" />
 						<Typography>Italian</Typography>
 					</Box>
-					<Box display="flex" justifyContent="center" alignItems="center" gap={1}>
+					<Box sx={{ cursor: 'pointer' }} display="flex" justifyContent="center" alignItems="center" gap={1}>
 						<img src="https://www.learnalanguage.com/themes/demo/assets/images/flags/Turkish.svg" alt="" />
 						<Typography>Turkish</Typography>
 					</Box>
