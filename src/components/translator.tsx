@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, Container, TextField, Typography } from '@mui/material';
+import { Box, Button, Container, TextField } from '@mui/material';
 import axios from 'axios';
 
 interface TranslatorProps {}
@@ -29,45 +29,15 @@ const Translator: FunctionComponent<TranslatorProps> = () => {
 				sx={{
 					width: '95%',
 					background: 'white',
-					height: '95vh',
+					height: '50vh',
 					marginBottom: '20px',
 					marginTop: '20px',
 					padding: '24px',
 					boxShadow: '0px 2px 6px 0px rgba(0,0,0,.16)',
 					border: '1px solid transparent',
-					borderRadius: '16px',
-					minHeight: 'calc(100vh - 48px)'
+					borderRadius: '16px'
 				}}
 				maxWidth="xl">
-				<Box display="flex" alignItems="center" gap={2}>
-					<svg
-						onClick={() => {
-							navigete(-1);
-						}}
-						style={{ cursor: 'pointer' }}
-						width="32"
-						height="32"
-						viewBox="0 0 32 32"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M19.3705 10.0438C19.7628 9.65497 19.7656 9.02181 19.3768 8.62955C18.9881 8.23729 18.3549 8.23446 17.9626 8.62324L15.5697 10.995C14.6684 11.8882 13.9317 12.6183 13.4093 13.2688C12.8661 13.9452 12.4728 14.6318 12.3678 15.4559C12.3217 15.8173 12.3217 16.183 12.3678 16.5444C12.4728 17.3685 12.8661 18.0551 13.4093 18.7316C13.9317 19.382 14.6684 20.1121 15.5696 21.0053L17.9626 23.3771C18.3549 23.7659 18.9881 23.763 19.3768 23.3708C19.7656 22.9785 19.7628 22.3454 19.3705 21.9566L17.0199 19.6268C16.0659 18.6813 15.4115 18.0306 14.9687 17.4792C14.5386 16.9436 14.391 16.5996 14.3517 16.2915C14.3271 16.098 14.3271 15.9023 14.3517 15.7088C14.391 15.4007 14.5386 15.0567 14.9687 14.5211C15.4115 13.9697 16.0659 13.319 17.0199 12.3735L19.3705 10.0438Z"
-							fill="#2D264B"
-						/>
-					</svg>
-					<Typography
-						sx={{
-							fontSize: '24px',
-							fontWeight: 500,
-							lineHeight: '22px',
-							color: '#090a0a',
-							whiteSpace: 'nowrap',
-							overflow: 'hidden',
-							textOverflow: 'ellipsis'
-						}}>
-						Translator
-					</Typography>
-				</Box>
 				<Box gap={5} display="flex" justifyContent="center" alignItems="center" mt={5}>
 					<Button
 						sx={{

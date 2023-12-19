@@ -2,8 +2,11 @@ import { FunctionComponent, useState } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 
 import AllLearn from 'components/all-learn';
+import Footer from 'components/footer';
 import Header from 'components/header';
 import HomeLearns from 'components/home-learns';
+
+import Translator from '../components/translator';
 
 interface HomeProps {}
 
@@ -47,7 +50,9 @@ const Home: FunctionComponent<HomeProps> = () => {
 				{/* Header tugashi */}
 
 				<HomeLearns />
+				<Translator />
 			</Box>
+			<Footer />
 		</>
 	);
 };
