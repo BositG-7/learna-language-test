@@ -28,7 +28,9 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 					mt={5}
 					sx={{
 						'@media (max-width:700px)': {
-							marginTop: '5px'
+							marginTop: '5px',
+							placeItems: 'center',
+							mr: '250px'
 						}
 					}}
 					container
@@ -44,7 +46,7 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 							cursor: 'pointer',
 							'@media (max-width:700px)': {
 								minWidth: '300px',
-								marginLeft: '0'
+								margin: '0'
 							}
 						}}
 						ml={4}
