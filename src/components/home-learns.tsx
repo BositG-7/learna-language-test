@@ -11,18 +11,29 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 		<>
 			<Box display="flex" m="20px 200px" justifyContent="center" alignItems="center" flexDirection="column">
 				<Typography
-					p={10}
 					sx={{
 						fontWeight: 400,
 						fontFamily: 'Rockwell, sans-serif',
 						fontSize: '32px',
+						'@media (max-width:700px)': {
+							fontSize: '16px'
+						},
 						color: '#173857'
 					}}
 					variant="h3">
 					Specific Language Lessons
 				</Typography>
 
-				<Grid mt={5} container spacing={2} gap={5}>
+				<Grid
+					mt={5}
+					sx={{
+						'@media (max-width:700px)': {
+							marginTop: '5px'
+						}
+					}}
+					container
+					spacing={2}
+					gap={5}>
 					<Grid
 						onClick={() => {
 							navigete('/dashboard/language/eng');
@@ -30,11 +41,15 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 						sx={{
 							backgroundImage: 'url(https://www.learnalanguage.com/storage/app/uploads/public/5cf/62a/501/5cf62a5011e94517528621.png)',
 							backgroundSize: 'cover',
-							cursor: 'pointer'
+							cursor: 'pointer',
+							'@media (max-width:700px)': {
+								minWidth: '300px',
+								marginLeft: '0'
+							}
 						}}
 						ml={4}
 						bgcolor="yellow"
-						width="33%"
+						width="100%"
 						height="250px"
 						item
 						xs={12}
@@ -65,7 +80,11 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 						sx={{
 							backgroundImage: 'url(https://www.learnalanguage.com/storage/app/uploads/public/5d1/f41/04d/5d1f4104de9c1711200253.jpg)',
 							backgroundSize: 'cover',
-							cursor: 'pointer'
+							cursor: 'pointer',
+							'@media (max-width:700px)': {
+								minWidth: '300px',
+								marginLeft: '0'
+							}
 						}}
 						onClick={() => {
 							navigete('/dashboard/language/spa');
@@ -102,7 +121,11 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 						sx={{
 							backgroundImage: 'url(https://www.learnalanguage.com/storage/app/uploads/public/5d1/f40/f06/5d1f40f06cbb0940749737.jpg)',
 							backgroundSize: 'cover',
-							cursor: 'pointer'
+							cursor: 'pointer',
+							'@media (max-width:700px)': {
+								minWidth: '300px',
+								marginLeft: '0'
+							}
 						}}
 						onClick={() => {
 							navigete('/dashboard/language/fre');
@@ -139,7 +162,11 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 						sx={{
 							backgroundImage: 'url(https://www.learnalanguage.com/storage/app/uploads/public/5d1/f40/dc5/5d1f40dc5bac4672570075.jpg)',
 							backgroundSize: 'cover',
-							cursor: 'pointer'
+							cursor: 'pointer',
+							'@media (max-width:700px)': {
+								minWidth: '300px',
+								marginLeft: '0'
+							}
 						}}
 						onClick={() => {
 							navigete('/dashboard/language/ita');
@@ -176,7 +203,11 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 						sx={{
 							backgroundImage: 'url(https://www.learnalanguage.com/storage/app/uploads/public/5d1/f40/c40/5d1f40c40207c034000128.jpg)',
 							backgroundSize: 'cover',
-							cursor: 'pointer'
+							cursor: 'pointer',
+							'@media (max-width:700px)': {
+								minWidth: '300px',
+								marginLeft: '0'
+							}
 						}}
 						onClick={() => {
 							navigete('/dashboard/language/ger');
@@ -213,7 +244,11 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 						sx={{
 							backgroundImage: 'url(https://www.learnalanguage.com/storage/app/uploads/public/5d1/f3b/d60/5d1f3bd60aebf015141870.jpg)',
 							backgroundSize: 'cover',
-							cursor: 'pointer'
+							cursor: 'pointer',
+							'@media (max-width:700px)': {
+								minWidth: '300px',
+								marginLeft: '0'
+							}
 						}}
 						onClick={() => {
 							navigete('/dashboard/language/tur');
