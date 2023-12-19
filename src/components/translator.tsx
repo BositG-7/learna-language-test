@@ -35,7 +35,8 @@ const Translator: FunctionComponent<TranslatorProps> = () => {
 					padding: '24px',
 					boxShadow: '0px 2px 6px 0px rgba(0,0,0,.16)',
 					border: '1px solid transparent',
-					borderRadius: '16px'
+					borderRadius: '16px',
+					paddingTop: '0'
 				}}
 				maxWidth="xl">
 				<Box gap={5} display="flex" justifyContent="center" alignItems="center" mt={5}>

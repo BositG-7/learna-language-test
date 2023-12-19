@@ -102,7 +102,13 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
 						</div>
 
 						<Box>
-							<img src="https://www.learnalanguage.com/themes/demo/assets/images/learnalanguage-black.svg" alt="" />
+							<img
+								onClick={() => {
+									navigete('/');
+								}}
+								src="https://www.learnalanguage.com/themes/demo/assets/images/learnalanguage-black.svg"
+								alt=""
+							/>
 						</Box>
 
 						<Box>

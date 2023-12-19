@@ -2,6 +2,7 @@ import { FunctionComponent, useState } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 
 import AllLearn from 'components/all-learn';
+import Category from 'components/category';
 import Footer from 'components/footer';
 import Header from 'components/header';
 import HomeLearns from 'components/home-learns';
@@ -21,7 +22,7 @@ const Home: FunctionComponent<HomeProps> = () => {
 	if (isButton) return <AllLearn onButton={handleButton} />;
 	return (
 		<>
-			<Box>
+			<Box width="100%" maxWidth="100%" overflow="hidden">
 				<Box
 					sx={{
 						display: 'flex',
@@ -50,6 +51,8 @@ const Home: FunctionComponent<HomeProps> = () => {
 				{/* Header tugashi */}
 
 				<HomeLearns />
+
+				<Category />
 				<Translator />
 			</Box>
 			<Footer />

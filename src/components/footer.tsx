@@ -1,10 +1,11 @@
 import { FunctionComponent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 
 interface FooterProps {}
 
 const Footer: FunctionComponent<FooterProps> = () => {
-	const i = 0;
+	const navigeta = useNavigate();
 
 	return (
 		<Box
@@ -23,7 +24,13 @@ const Footer: FunctionComponent<FooterProps> = () => {
 				}
 			}}>
 			<Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" gap={5}>
-				<img src="https://www.learnalanguage.com/themes/demo/assets/images/learnlanguage.svg" alt="" />
+				<img
+					onClick={() => {
+						navigeta('/');
+					}}
+					src="https://www.learnalanguage.com/themes/demo/assets/images/learnlanguage.svg"
+					alt=""
+				/>
 				<Typography sx={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.5)' }}>© 2023 Net Train Limited. All rights reserved</Typography>
 			</Box>
 			<Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" gap={5}>
