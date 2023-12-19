@@ -7,7 +7,21 @@ const Footer: FunctionComponent<FooterProps> = () => {
 	const i = 0;
 
 	return (
-		<Box p="20px 50px" display="flex" justifyContent="space-between" alignItems="center" gap={8} height={250} bgcolor="#173857" width="100%">
+		<Box
+			p="20px 50px"
+			display="flex"
+			justifyContent="space-between"
+			alignItems="center"
+			gap={8}
+			height={250}
+			bgcolor="#173857"
+			width="100%"
+			sx={{
+				'@media (max-width:700px)': {
+					flexDirection: 'column',
+					height: '750px'
+				}
+			}}>
 			<Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" gap={5}>
 				<img src="https://www.learnalanguage.com/themes/demo/assets/images/learnlanguage.svg" alt="" />
 				<Typography sx={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.5)' }}>© 2023 Net Train Limited. All rights reserved</Typography>

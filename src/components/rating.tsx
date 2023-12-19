@@ -1,16 +1,37 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, Container } from '@mui/material';
+import config from 'config';
+import { getPrognos } from 'services/store';
 
 import { Confetti } from 'components';
 
 interface RatingProps {
-	rating: number;
 	onReset: () => void;
 }
 
-const Rating: FunctionComponent<RatingProps> = ({ rating, onReset }) => {
+const Rating: FunctionComponent<RatingProps> = ({ onReset }) => {
 	const navigete = useNavigate();
+	const [rating, setRating] = useState(0);
+	const { quetions } = config.data;
+
+	useEffect(() => {
+		const fetch = async () => {
+			const data = await getPrognos();
+
+			let count = 0;
+
+			for (let i = 0; i < quetions.length; i++) {
+				if (quetions[i].right === data[i]) {
+					// eslint-disable-next-line no-plusplus
+					count++;
+				}
+			}
+			setRating(count);
+		};
+
+		fetch();
+	}, []);
 
 	return (
 		<>
@@ -76,7 +97,7 @@ const Rating: FunctionComponent<RatingProps> = ({ rating, onReset }) => {
 						fontSize: '1.5em',
 						fontWeight: 'bold'
 					}}>
-					{rating > 5 ? <h2 style={{ fontSize: '1.5em' }}>Good!</h2> : <h2 style={{ fontSize: '1.5em' }}>Poor!</h2>}
+					{rating ? <h2 style={{ fontSize: '1.5em' }}>Good!</h2> : <h2 style={{ fontSize: '1.5em' }}>Poor!</h2>}
 				</Box>
 
 				<Box mt={5} sx={{ display: 'flex', gap: '20px', justifyContent: 'center', alignItems: 'center' }}>

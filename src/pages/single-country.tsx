@@ -1,16 +1,17 @@
 /* eslint-disable no-nested-ternary */
+
 import React, { useEffect, useState } from 'react';
-import { useNavigate} from 'react-router-dom';
-import { Box, Button, Container, Modal, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { Box, Button, Container, Grid, Modal, Typography } from '@mui/material';
 import config from 'config';
+import { clearPrognos, getPrognos, setPrognos } from 'services/store';
 
 import { Rating } from 'components';
+import CircularWithValueLabel from 'components/prognos';
 
 interface SingleCountryProps {}
 
 const SingleCountry = () => {
-
-
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
@@ -21,14 +22,18 @@ const SingleCountry = () => {
 		right: '',
 		varinats: ['', '']
 	});
-	const [dataIdx, setDataIdx] = useState(0);
+	const [dataIdx, setDataIdx] = useState(getPrognos().length ? (getPrognos().length <= 9 ? getPrognos().length : 0) : 0);
 	const [disabled, setDisabled] = useState(false);
 	const [checkwinner, setCheckWinner] = useState('');
-	const [winnerRating, setWinnerRating] = useState(0);
-	const [noWinnerRating, setNoWinnerRating] = useState(0);
+
 	const [isWinner, setisWinner] = useState(false);
+	const [prognosValue, setPrognosValue] = useState(getPrognos().length ? (getPrognos().length <= 9 ? getPrognos().length * 10 : 0) : 0);
 
 	useEffect(() => {
+		if (getPrognos().length > 9) {
+			clearPrognos();
+		}
+
 		const quetions = config.data.quetions[dataIdx];
 
 		setData(quetions);
@@ -38,29 +43,35 @@ const SingleCountry = () => {
 		setDataIdx(0);
 		setDisabled(false);
 		setCheckWinner('');
-		setWinnerRating(0);
-		setNoWinnerRating(0);
+
 		setisWinner(false);
+		setPrognosValue(0);
+		clearPrognos();
 	};
 
 	const handleClick = (value: string) => {
 		if (value === data.right) {
 			setCheckWinner('togri');
 			setDisabled(true);
-			setWinnerRating(winnerRating + 1);
 		} else {
 			setCheckWinner('notogri');
 			setDisabled(true);
-			setNoWinnerRating(noWinnerRating + 1);
 		}
+		const oldData = getPrognos();
+
+		oldData.push(value);
+		setPrognos(oldData);
 	};
 	const handleNext = () => {
 		setDisabled(false);
 		setCheckWinner('');
-		if (winnerRating + noWinnerRating === 10) {
+		if (dataIdx >= 9) {
 			setisWinner(true);
 			return;
 		}
+
+		setPrognosValue(prognosValue + 10);
+
 		setDataIdx(dataIdx + 1);
 	};
 
@@ -79,7 +90,7 @@ const SingleCountry = () => {
 	if (isWinner) {
 		return (
 			<>
-				<Rating rating={winnerRating} onReset={handleReset} />
+				<Rating onReset={handleReset} />
 			</>
 		);
 	}
@@ -87,20 +98,28 @@ const SingleCountry = () => {
 	return (
 		<>
 			<Container
+				className="contaner1"
 				sx={{
 					width: '95%',
 					background: 'white',
-					height: '100vh',
 					marginBottom: '20px',
 					marginTop: '20px',
+					height: '90vh',
 					padding: '24px',
 					boxShadow: '0px 2px 6px 0px rgba(0,0,0,.16)',
 					border: '1px solid transparent',
 					borderRadius: '16px',
-					minHeight: 'calc(100vh - 48px)'
+					minHeight: 'calc(100vh - 48px)',
+					'@media (max-width:600px)': {
+						height: '140vh'
+					}
 				}}
 				maxWidth="xl">
-				<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+				<Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+					<CircularWithValueLabel value={prognosValue} />
+				</Box>
+
+				<Box mt={3} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
 					<Box>
 						<Button onClick={handleOpen}>
 							<img src="https://web-student.inter-nation.uz/icons/close1.svg" alt="" />
@@ -163,7 +182,7 @@ const SingleCountry = () => {
 											color: '#090A0A'
 										}}
 										onClick={() => {
-											navigete('/');
+											navigete(-1);
 										}}>
 										Quit
 									</Button>
@@ -180,44 +199,41 @@ const SingleCountry = () => {
 						{`${dataIdx + 1}/10`}
 					</Box>
 				</Box>
-				<Box mt={5} sx={{ fontSize: '18px', lineHeight: '20px', fontWeight: '700px', color: '#404446' }} color="#404446">
+				<Box mt={3} sx={{ fontSize: '18px', lineHeight: '20px', fontWeight: '700px', color: '#404446' }} color="#404446">
 					Please, learn new word attentively
 				</Box>
-				<Box mt={5} sx={{ border: '1px solid #e3e5e6', borderRadius: '8px', display: 'flex', justifyContent: 'center' }}>
+				<Box mt={3} sx={{ border: '1px solid #e3e5e6', borderRadius: '8px', display: 'flex', justifyContent: 'center' }}>
 					<img src="https://web-student.inter-nation.uz/images/word.png" alt="" />
 				</Box>
-				<h2 style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '1.5em' }}>
-					{
-						// @ts-ignore
-						data.title
-					}
-				</h2>
+				<h2 style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '1.5em' }}>{data.title}</h2>
 
-				<Box pt={5} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', width: '100%' }}>
+				<Grid mt={5} container spacing={2}>
 					{data?.varinats?.map((item, idx) => (
 						// eslint-disable-next-line react/jsx-key
-						<Button
-							onClick={() => {
-								handleClick(item);
-							}}
-							disabled={disabled}
-							sx={{
-								width: '25%',
-								padding: '24px',
-								borderRadius: '12px',
-								border: '2px solid transparent',
-								fontSize: '16px',
-								fontWeight: '500px',
-								lineHeight: '16px',
-								boxShadow: '0px 2px 6px 0px rgba(0,0,0,.16)',
-								background: '#fff',
-								userSelect: 'none',
-								color: '#090a0a'
-							}}>
-							{item}
-						</Button>
+						<Grid item xs={12} sm={6} md={4} lg={3}>
+							<Button
+								onClick={() => {
+									handleClick(item);
+								}}
+								disabled={disabled}
+								sx={{
+									width: '100%',
+									padding: '24px',
+									borderRadius: '12px',
+									border: '2px solid transparent',
+									fontSize: '16px',
+									fontWeight: '500px',
+									lineHeight: '16px',
+									boxShadow: '0px 2px 6px 0px rgba(0,0,0,.16)',
+									background: '#fff',
+									userSelect: 'none',
+									color: '#090a0a'
+								}}>
+								{item}
+							</Button>
+						</Grid>
 					))}
-				</Box>
+				</Grid>
 				{checkwinner === 'togri' ? (
 					<Box
 						sx={{
@@ -262,30 +278,6 @@ const SingleCountry = () => {
 									}}>
 									Correct answer
 								</Typography>
-							</Box>
-							<Box>
-								<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path
-										d="M25.5391 6.66219C23.869 6.17542 22.2644 6.84197 20.7253 7.81289C19.1796 8.78801 17.3035 10.3343 14.9563 12.2688L12.8759 13.9834C12.477 14.3122 12.3157 14.4446 12.1558 14.5638C10.8021 15.5725 9.1786 16.1553 7.49235 16.2379C7.29321 16.2476 7.08451 16.248 6.56755 16.248L6.48439 16.248C6.03877 16.2479 5.6954 16.2478 5.38842 16.2821C2.83515 16.5678 0.819842 18.5831 0.534142 21.1364C0.499792 21.4434 0.499889 21.7868 0.500015 22.2324V24.6922C0.499889 25.1379 0.499792 25.4812 0.534142 25.7882C0.819841 28.3415 2.83515 30.3568 5.38842 30.6425C5.69541 30.6768 6.03878 30.6767 6.48442 30.6766L6.56755 30.6766C7.08451 30.6766 7.29321 30.677 7.49235 30.6868C9.1786 30.7693 10.8021 31.3521 12.1558 32.3609C12.3157 32.48 12.477 32.6124 12.8759 32.9412L14.9563 34.6558C17.3035 36.5904 19.1796 38.1366 20.7253 39.1117C22.2644 40.0827 23.869 40.7492 25.5391 40.2624C26.0933 40.1009 26.6187 39.8531 27.0959 39.5281C28.5337 38.5489 29.0399 36.8868 29.2695 35.0816C29.5001 33.2685 29.5001 30.8374 29.5 27.7957V19.129C29.5001 16.0872 29.5001 13.6561 29.2695 11.8431C29.0399 10.0379 28.5337 8.37572 27.0959 7.39654C26.6187 7.07157 26.0933 6.82375 25.5391 6.66219Z"
-										fill="#23C16B"
-									/>
-									<path
-										d="M39.0607 8.40165C38.4749 7.81587 37.5252 7.81587 36.9394 8.40165C36.3536 8.98744 36.3536 9.93719 36.9394 10.523L38.3394 11.923C39.5568 13.1404 40.0946 13.6803 40.4991 14.1644C44.9971 19.547 44.9971 27.3776 40.4991 32.7602C40.0946 33.2443 39.5568 33.7842 38.3394 35.0017L36.9394 36.4017C36.3536 36.9874 36.3536 37.9372 36.9394 38.523C37.5252 39.1088 38.4749 39.1088 39.0607 38.523L40.532 37.0517C41.6591 35.9246 42.2995 35.2842 42.8012 34.6839C48.2298 28.1876 48.2298 18.737 42.8012 12.2407C42.2995 11.6404 41.659 10.9999 40.5319 9.87288L39.0607 8.40165Z"
-										fill="#23C16B"
-									/>
-									<path
-										d="M35.0607 14.4017C34.4749 13.8159 33.5252 13.8159 32.9394 14.4017C32.3536 14.9874 32.3536 15.9372 32.9394 16.523L33.7394 17.323C33.8628 17.4464 33.9132 17.4969 33.9538 17.5386C37.1593 20.8373 37.1593 26.0874 33.9538 29.386C33.9132 29.4277 33.8628 29.4782 33.7394 29.6016L32.9394 30.4017C32.3536 30.9874 32.3536 31.9372 32.9394 32.523C33.5252 33.1088 34.4749 33.1088 35.0607 32.523L35.8714 31.7123C35.9807 31.6029 36.0479 31.5358 36.1052 31.4768C40.4421 27.0139 40.4421 19.9108 36.1052 15.4479C36.0478 15.3888 35.981 15.3219 35.8713 15.2123L35.0607 14.4017Z"
-										fill="#23C16B"
-									/>
-								</svg>
-								<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path
-										fillRule="evenodd"
-										clipRule="evenodd"
-										d="M13.6964 9C12.7595 9 12 9.75952 12 10.6964V36.7084C12 37.6453 12.7595 38.4048 13.6964 38.4048C14.6333 38.4048 15.3929 37.6453 15.3929 36.7084V26.4968C16.1253 26.8417 16.8964 27.07 17.675 27.092C19.6587 27.1469 21.5083 26.5216 23.3477 25.8345C23.7682 25.6793 24.1867 25.5181 24.605 25.357C26.1769 24.7516 27.747 24.1468 29.4175 23.8591C31.2583 23.4857 33.1658 23.4518 34.8019 24.4109C34.9884 24.5272 35.1803 24.6506 35.3861 24.7837C35.5429 24.8851 35.7495 24.7728 35.7495 24.5861L35.75 11.8488C35.75 11.1552 35.4707 10.4744 34.88 10.1109C33.9611 9.54534 32.7982 9.128 31.7458 9.03424C30.0374 8.8797 28.4043 9.26793 26.8009 9.81769C26.0737 10.0685 25.3491 10.3288 24.6247 10.5891C23.2158 11.0953 21.8073 11.6014 20.3803 12.0371C18.7519 12.5795 16.9975 12.5398 15.3929 11.924V10.6964C15.3929 9.75952 14.6333 9 13.6964 9Z"
-										fill="#23C16B"
-									/>
-								</svg>
 							</Box>
 						</Box>
 						<Button
@@ -369,30 +361,6 @@ const SingleCountry = () => {
 										Correct: {data.right}
 									</Typography>
 								</Box>
-							</Box>
-							<Box>
-								<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path
-										d="M25.5391 6.66219C23.869 6.17542 22.2644 6.84197 20.7253 7.81289C19.1796 8.78801 17.3035 10.3343 14.9563 12.2688L12.8759 13.9834C12.477 14.3122 12.3157 14.4446 12.1558 14.5638C10.8021 15.5725 9.1786 16.1553 7.49235 16.2379C7.29321 16.2476 7.08451 16.248 6.56755 16.248L6.48439 16.248C6.03877 16.2479 5.6954 16.2478 5.38842 16.2821C2.83515 16.5678 0.819842 18.5831 0.534142 21.1364C0.499792 21.4434 0.499889 21.7868 0.500015 22.2324V24.6922C0.499889 25.1379 0.499792 25.4812 0.534142 25.7882C0.819841 28.3415 2.83515 30.3568 5.38842 30.6425C5.69541 30.6768 6.03878 30.6767 6.48442 30.6766L6.56755 30.6766C7.08451 30.6766 7.29321 30.677 7.49235 30.6868C9.1786 30.7693 10.8021 31.3521 12.1558 32.3609C12.3157 32.48 12.477 32.6124 12.8759 32.9412L14.9563 34.6558C17.3035 36.5904 19.1796 38.1366 20.7253 39.1117C22.2644 40.0827 23.869 40.7492 25.5391 40.2624C26.0933 40.1009 26.6187 39.8531 27.0959 39.5281C28.5337 38.5489 29.0399 36.8868 29.2695 35.0816C29.5001 33.2685 29.5001 30.8374 29.5 27.7957V19.129C29.5001 16.0872 29.5001 13.6561 29.2695 11.8431C29.0399 10.0379 28.5337 8.37572 27.0959 7.39654C26.6187 7.07157 26.0933 6.82375 25.5391 6.66219Z"
-										fill="#FF5247"
-									/>
-									<path
-										d="M39.0607 8.40165C38.4749 7.81587 37.5252 7.81587 36.9394 8.40165C36.3536 8.98744 36.3536 9.93719 36.9394 10.523L38.3394 11.923C39.5568 13.1404 40.0946 13.6803 40.4991 14.1644C44.9971 19.547 44.9971 27.3776 40.4991 32.7602C40.0946 33.2443 39.5568 33.7842 38.3394 35.0017L36.9394 36.4017C36.3536 36.9874 36.3536 37.9372 36.9394 38.523C37.5252 39.1088 38.4749 39.1088 39.0607 38.523L40.532 37.0517C41.6591 35.9246 42.2995 35.2842 42.8012 34.6839C48.2298 28.1876 48.2298 18.737 42.8012 12.2407C42.2995 11.6404 41.659 10.9999 40.5319 9.87288L39.0607 8.40165Z"
-										fill="#FF5247"
-									/>
-									<path
-										d="M35.0607 14.4017C34.4749 13.8159 33.5252 13.8159 32.9394 14.4017C32.3536 14.9874 32.3536 15.9372 32.9394 16.523L33.7394 17.323C33.8628 17.4464 33.9132 17.4969 33.9538 17.5386C37.1593 20.8373 37.1593 26.0874 33.9538 29.386C33.9132 29.4277 33.8628 29.4782 33.7394 29.6016L32.9394 30.4017C32.3536 30.9874 32.3536 31.9372 32.9394 32.523C33.5252 33.1088 34.4749 33.1088 35.0607 32.523L35.8714 31.7123C35.9807 31.6029 36.0479 31.5358 36.1052 31.4768C40.4421 27.0139 40.4421 19.9108 36.1052 15.4479C36.0478 15.3888 35.981 15.3219 35.8713 15.2123L35.0607 14.4017Z"
-										fill="#FF5247"
-									/>
-								</svg>
-								<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path
-										fillRule="evenodd"
-										clipRule="evenodd"
-										d="M13.6964 9C12.7595 9 12 9.75952 12 10.6964V36.7084C12 37.6453 12.7595 38.4048 13.6964 38.4048C14.6333 38.4048 15.3929 37.6453 15.3929 36.7084V26.4968C16.1253 26.8417 16.8964 27.07 17.675 27.092C19.6587 27.1469 21.5083 26.5216 23.3477 25.8345C23.7682 25.6793 24.1867 25.5181 24.605 25.357C26.1769 24.7516 27.747 24.1468 29.4175 23.8591C31.2583 23.4857 33.1658 23.4518 34.8019 24.4109C34.9884 24.5272 35.1803 24.6506 35.3861 24.7837C35.5429 24.8851 35.7495 24.7728 35.7495 24.5861L35.75 11.8488C35.75 11.1552 35.4707 10.4744 34.88 10.1109C33.9611 9.54534 32.7982 9.128 31.7458 9.03424C30.0374 8.8797 28.4043 9.26793 26.8009 9.81769C26.0737 10.0685 25.3491 10.3288 24.6247 10.5891C23.2158 11.0953 21.8073 11.6014 20.3803 12.0371C18.7519 12.5795 16.9975 12.5398 15.3929 11.924V10.6964C15.3929 9.75952 14.6333 9 13.6964 9Z"
-										fill="#FF5247"
-									/>
-								</svg>
 							</Box>
 						</Box>
 						<Button

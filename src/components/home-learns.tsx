@@ -1,10 +1,11 @@
 import { FunctionComponent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Box, Grid, Typography } from '@mui/material';
 
 interface HomeLearnsProps {}
 
 const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
-	const i = 0;
+	const navigete = useNavigate();
 
 	return (
 		<>
@@ -23,6 +24,9 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 
 				<Grid mt={5} container spacing={2} gap={5}>
 					<Grid
+						onClick={() => {
+							navigete('/dashboard/language/eng');
+						}}
 						sx={{
 							backgroundImage: 'url(https://www.learnalanguage.com/storage/app/uploads/public/5cf/62a/501/5cf62a5011e94517528621.png)',
 							backgroundSize: 'cover',
@@ -63,6 +67,9 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 							backgroundSize: 'cover',
 							cursor: 'pointer'
 						}}
+						onClick={() => {
+							navigete('/dashboard/language/spa');
+						}}
 						ml={4}
 						bgcolor="yellow"
 						width="33%"
@@ -96,6 +103,9 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 							backgroundImage: 'url(https://www.learnalanguage.com/storage/app/uploads/public/5d1/f40/f06/5d1f40f06cbb0940749737.jpg)',
 							backgroundSize: 'cover',
 							cursor: 'pointer'
+						}}
+						onClick={() => {
+							navigete('/dashboard/language/fre');
 						}}
 						ml={4}
 						bgcolor="yellow"
@@ -131,6 +141,9 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 							backgroundSize: 'cover',
 							cursor: 'pointer'
 						}}
+						onClick={() => {
+							navigete('/dashboard/language/ita');
+						}}
 						ml={4}
 						bgcolor="yellow"
 						width="33%"
@@ -165,6 +178,9 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 							backgroundSize: 'cover',
 							cursor: 'pointer'
 						}}
+						onClick={() => {
+							navigete('/dashboard/language/ger');
+						}}
 						ml={4}
 						bgcolor="yellow"
 						width="33%"
@@ -198,6 +214,9 @@ const HomeLearns: FunctionComponent<HomeLearnsProps> = () => {
 							backgroundImage: 'url(https://www.learnalanguage.com/storage/app/uploads/public/5d1/f3b/d60/5d1f3bd60aebf015141870.jpg)',
 							backgroundSize: 'cover',
 							cursor: 'pointer'
+						}}
+						onClick={() => {
+							navigete('/dashboard/language/tur');
 						}}
 						ml={4}
 						bgcolor="yellow"

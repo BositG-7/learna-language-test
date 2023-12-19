@@ -12,7 +12,7 @@ const About: FunctionComponent<AboutProps> = () => {
 	return (
 		<>
 			<Navbar />
-			<Box display="flex" flexDirection="column" gap={3} alignItems="center" height="calc(100vh - 350px)">
+			<Box display="flex" mt={13} flexDirection="column" gap={3} alignItems="center" height="calc(100vh - 350px)">
 				<Box>
 					<Typography color="#173857">Home / About</Typography>
 				</Box>

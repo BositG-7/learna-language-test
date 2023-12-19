@@ -3,7 +3,9 @@ const ENV = process.env;
 const config = {
 	api: {
 		baseURL: ENV.REACT_APP_BASE_URL,
-		sessionKEY: ENV.REACT_APP_SESSION_KEY
+		sessionKEY: ENV.REACT_APP_SESSION_KEY,
+		key: 'id',
+		progos: 'prognos'
 	},
 	data: {
 		quetions: [
@@ -59,7 +61,7 @@ const config = {
 				right: 'Noutbuk',
 				varinats: ['Planshet', 'Soyabon', 'Noutbuk', 'Ruchka'].sort((a, b) => 0.5 - Math.random())
 			}
-		].sort((a, b) => 0.5 - Math.random())
+		]
 	}
 };
 
