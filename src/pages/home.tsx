@@ -22,7 +22,7 @@ const Home: FunctionComponent<HomeProps> = () => {
 	if (isButton) return <AllLearn onButton={handleButton} />;
 	return (
 		<>
-			<Box width="100%" display="flex" flexDirection="column" justifyContent="center" alignItems="center" maxWidth="100%" overflow="hidden">
+			<Box width="100%" maxWidth="100%" overflow="hidden">
 				<Box
 					sx={{
 						display: 'flex',
