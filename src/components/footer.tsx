@@ -18,6 +18,7 @@ const Footer: FunctionComponent<FooterProps> = () => {
 			bgcolor="#173857"
 			width="100%"
 			sx={{
+				cursor: 'pointer',
 				'@media (max-width:700px)': {
 					flexDirection: 'column',
 					height: '750px'

@@ -104,7 +104,7 @@ const SingleCountry = () => {
 					background: 'white',
 					marginBottom: '20px',
 					marginTop: '20px',
-					height: '90vh',
+					height: '100vh',
 					padding: '24px',
 					pt: '10px',
 					boxShadow: '0px 2px 6px 0px rgba(0,0,0,.16)',

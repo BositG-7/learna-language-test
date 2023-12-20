@@ -39,6 +39,8 @@ const Header: FunctionComponent<HeaderProps> = () => {
 				<>
 					<Box
 						sx={{
+							cursor: 'pointer',
+
 							display: 'none',
 							justifyContent: 'space-between',
 							width: '100%',
@@ -104,6 +106,8 @@ const Header: FunctionComponent<HeaderProps> = () => {
 
 					<Box
 						sx={{
+							cursor: 'pointer',
+
 							display: 'flex',
 							justifyContent: 'space-between',
 							width: '100%',
@@ -231,6 +235,8 @@ const Header: FunctionComponent<HeaderProps> = () => {
 					</Box>
 					<Box
 						sx={{
+							cursor: 'pointer',
+
 							display: 'none',
 							justifyContent: 'center',
 							width: '100%',

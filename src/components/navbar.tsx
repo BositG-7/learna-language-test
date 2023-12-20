@@ -39,6 +39,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
 				<>
 					<Box
 						sx={{
+							cursor: 'pointer',
 							display: 'none',
 							justifyContent: 'space-between',
 							width: '100%',
@@ -80,18 +81,21 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
 									'aria-labelledby': 'basic-button'
 								}}>
 								<MenuItem
+									sx={{ cursor: 'pointer' }}
 									onClick={() => {
 										navigete('/dashboard/about');
 									}}>
 									About Us
 								</MenuItem>
 								<MenuItem
+									sx={{ cursor: 'pointer' }}
 									onClick={() => {
 										navigete('/dashboard/contact');
 									}}>
 									Contact Us
 								</MenuItem>
 								<MenuItem
+									sx={{ cursor: 'pointer' }}
 									onClick={() => {
 										clearSession();
 										window.location.href = '/';
@@ -106,6 +110,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
 								onClick={() => {
 									navigete('/');
 								}}
+								style={{ cursor: 'pointer' }}
 								src="https://www.learnalanguage.com/themes/demo/assets/images/learnalanguage-black.svg"
 								alt=""
 							/>
@@ -117,6 +122,8 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
 					</Box>
 					<Box
 						sx={{
+							cursor: 'pointer',
+
 							display: 'flex',
 							justifyContent: 'space-between',
 							width: '100%',
@@ -139,7 +146,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
 							onClick={() => {
 								navigete('/dashboard');
 							}}>
-							<img src="https://www.learnalanguage.com/themes/demo/assets/images/learnlanguage.svg" alt="" />
+							<img style={{ cursor: 'pointer' }} src="https://www.learnalanguage.com/themes/demo/assets/images/learnlanguage.svg" alt="" />
 						</Box>
 
 						<ul style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '40px', height: '100%', listStyle: 'none' }}>
@@ -158,7 +165,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
 								Contast Us
 							</li>
 							<li>
-								<FormControl sx={{ width: '100px' }}>
+								<FormControl sx={{ width: '100px', cursor: 'pointer' }}>
 									<InputLabel>Learn</InputLabel>
 									<Select>
 										<MenuItem
