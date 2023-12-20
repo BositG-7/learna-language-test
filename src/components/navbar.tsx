@@ -161,12 +161,43 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
 								<FormControl sx={{ width: '100px' }}>
 									<InputLabel>Learn</InputLabel>
 									<Select>
-										<MenuItem>Engilish</MenuItem>
-										<MenuItem>Spanish</MenuItem>
-										<MenuItem>Franch</MenuItem>
-										<MenuItem>Italian</MenuItem>
-										<MenuItem>German</MenuItem>
-										<MenuItem>Turkish</MenuItem>
+										<MenuItem
+											onClick={() => {
+												navigete('/dashboard/language/eng');
+											}}>
+											Engilish
+										</MenuItem>
+										<MenuItem
+											onClick={() => {
+												navigete('/dashboard/language/spa');
+											}}>
+											Spanish
+										</MenuItem>
+										<MenuItem
+											onClick={() => {
+												navigete('/dashboard/language/fre');
+											}}>
+											Franch
+										</MenuItem>
+										<MenuItem
+											onClick={() => {
+												navigete('/dashboard/language/ita');
+											}}>
+											Italian
+										</MenuItem>
+										<MenuItem
+											onClick={() => {
+												navigete('/dashboard/language/ger');
+											}}>
+											German
+										</MenuItem>
+										<MenuItem
+											onClick={() => {
+												navigete('/dashboard/language/tur');
+												window.location.href = window.location.pathname;
+											}}>
+											Turkish
+										</MenuItem>
 									</Select>
 								</FormControl>
 							</li>

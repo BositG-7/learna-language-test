@@ -44,6 +44,9 @@ const Footer: FunctionComponent<FooterProps> = () => {
 				</Typography>
 				<Box ml={5} justifyContent="center" alignItems="center" display="flex" gap={5}>
 					<Typography
+						onClick={() => {
+							navigeta('/dashboard/language/eng');
+						}}
 						sx={{
 							fontSize: '13px',
 							display: 'block',
@@ -52,6 +55,9 @@ const Footer: FunctionComponent<FooterProps> = () => {
 						English
 					</Typography>
 					<Typography
+						onClick={() => {
+							navigeta('/dashboard/language/tur');
+						}}
 						sx={{
 							fontSize: '13px',
 							display: 'block',
@@ -60,6 +66,9 @@ const Footer: FunctionComponent<FooterProps> = () => {
 						Turkish
 					</Typography>
 					<Typography
+						onClick={() => {
+							navigeta('/dashboard/language/ger');
+						}}
 						sx={{
 							fontSize: '13px',
 							display: 'block',
@@ -71,6 +80,9 @@ const Footer: FunctionComponent<FooterProps> = () => {
 
 				<Box ml={5} justifyContent="center" alignItems="center" display="flex" gap={5}>
 					<Typography
+						onClick={() => {
+							navigeta('/dashboard/language/fre');
+						}}
 						sx={{
 							fontSize: '13px',
 							display: 'block',
@@ -79,6 +91,9 @@ const Footer: FunctionComponent<FooterProps> = () => {
 						French
 					</Typography>
 					<Typography
+						onClick={() => {
+							navigeta('/dashboard/language/spa');
+						}}
 						sx={{
 							fontSize: '13px',
 							display: 'block',
@@ -87,6 +102,9 @@ const Footer: FunctionComponent<FooterProps> = () => {
 						Spanish
 					</Typography>
 					<Typography
+						onClick={() => {
+							navigeta('/dashboard/language/ita');
+						}}
 						sx={{
 							fontSize: '13px',
 							display: 'block',

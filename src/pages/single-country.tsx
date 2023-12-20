@@ -106,6 +106,7 @@ const SingleCountry = () => {
 					marginTop: '20px',
 					height: '90vh',
 					padding: '24px',
+					pt: '10px',
 					boxShadow: '0px 2px 6px 0px rgba(0,0,0,.16)',
 					border: '1px solid transparent',
 					borderRadius: '16px',
@@ -207,7 +208,7 @@ const SingleCountry = () => {
 				</Box>
 				<h2 style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '1.5em' }}>{data.title}</h2>
 
-				<Grid mt={5} container spacing={2}>
+				<Grid mt={3} container spacing={2}>
 					{data?.varinats?.map((item, idx) => (
 						// eslint-disable-next-line react/jsx-key
 						<Grid item xs={12} sm={6} md={4} lg={3}>
